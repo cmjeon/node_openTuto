@@ -138,7 +138,7 @@ var app = http.createServer(function (request, response) {
             fs.rename(`data/${id}`, `data/${title}`, function(){
                 fs.writeFile(`data/${title}`, description, 'utf-8', function (err) {
                     response.writeHead(302, {Location: `/?id=${title}`});
-                    response.end('Success');
+                    response.end('Success'); 
                 });    
             });
             console.log(post);
