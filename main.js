@@ -139,12 +139,27 @@ var app = http.createServer(function (request, response) {
             var id = post.id;
             var title = post.title;
             var description = post.description;
-            fs.rename(`data/${id}`, `data/${title}`, function(){
+            fs.rename(`data/${id}`, `data/${title}`, function(err){
                 fs.writeFile(`data/${title}`, description, 'utf-8', function (err) {
                     response.writeHead(302, {Location: `/?id=${title}`});
                     response.end('Success'); 
                 });    
             });
+            console.log(post);
+        });
+    } else if (pathname === '/delete_process') {
+        var body = '';
+        request.on('data', function (data) {
+            body = body + data;
+        });
+        request.on('end', function () {
+            var post = qs.parse(body);
+            var id = post.id;
+            fs.unlink(`data/${id}`, function(err){
+                response.writeHead(302, {Location:`/`});
+                response.end();
+            })
+        
             console.log(post);
         });
     } else {
