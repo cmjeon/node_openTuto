@@ -5,19 +5,19 @@ var qs = require('querystring');
 
 function templateHTML(title, list, body, control) {
     return `
-    <!doctype html>
-    <html>
-    <head>
-    <title>WEB1 - ${title}</title>
-    <meta charset="utf-8">
-    </head>
-    <body>
-    <h1><a href="/">WEB</a></h1>
-    ${list}
-    ${control}
-    ${body}
-    </body>
-    </html>
+        <!doctype html>
+        <html>
+        <head>
+        <title>WEB1 - ${title}</title>
+        <meta charset="utf-8">
+        </head>
+        <body>
+        <h1><a href="/">WEB</a></h1>
+        ${list}
+        ${control}
+        ${body}
+        </body>
+        </html>
     `;
 }
 
@@ -25,7 +25,9 @@ function templateList(filelist) {
     var list = '<ul>';
     var i = 0;
     while (i < filelist.length) {
-        list = list + `<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`
+        list = list + `
+            <li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>
+        `
         i = i + 1;
     }
     list = list + '</ul>';
@@ -57,7 +59,7 @@ var app = http.createServer(function (request, response) {
                     var title = queryData.id;
                     var list = templateList(filelist);
                     var template = templateHTML(title, list, `
-                    <h2>${title}</h2><p>${description}</p>
+                        <h2>${title}</h2><p>${description}</p>
                     `,
                     `
                     <a href="/create">create</a>
