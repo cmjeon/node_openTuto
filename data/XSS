@@ -1,0 +1,4 @@
+&lt;script&gt;
+//alert('aaaa');
+location.href = 'https://opentutorials.org/course/1';
+&lt;/script&gt;
