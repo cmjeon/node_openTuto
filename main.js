@@ -5,8 +5,8 @@ var qs = require('querystring');
 var template = require('./lib/template.js');
 var path = require('path');
 var sanitizeHtml = require('sanitize-html');
-var dirty = 'some really tacky HTML';
-var clean = sanitizeHtml(dirty);
+// var dirty = 'some really dirty HTML';
+// var clean = sanitizeHtml(dirty);
 
 var app = http.createServer(function (request, response) {
     var _url = request.url;
@@ -147,4 +147,6 @@ var app = http.createServer(function (request, response) {
         response.end('Not found');
     }
 });
-app.listen(3000);
+app.listen(3000, function(){
+    console.log("Server is running : localhost:3000");
+});
